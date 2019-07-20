@@ -15,6 +15,7 @@
 
     <script type="text/babel">
 
+
         var Comment = React.createClass({
 
             getInitialState: function(){
@@ -75,16 +76,37 @@
 
 
 
-        
 
-        ReactDOM.render(<div className="board">
-            <Comment> Hey now </Comment>
-            <br />
-            <Comment> Banana </Comment>
-            <br />
-            <Comment> Mirana </Comment>
+        var Board = React.createClass({
             
-            </div>, document.getElementById('container'));
+            getInitialState: function(){
+                return{
+                    comments: [
+                        'comment 1',
+                        'second comment',
+                        'the final comment'
+                    ]
+                }
+            },
+
+            render: function(){
+                return(
+                    <div className="board">
+                        {
+                            this.state.comments.map(function (text, i){
+                                return (<Comment key={i}>{text}</Comment>);
+                            })
+                        }
+                    </div>
+                );
+            }
+
+        });
+
+
+
+        ReactDOM.render(<Board />, document.getElementById('container'));
+
 
     </script>
 
